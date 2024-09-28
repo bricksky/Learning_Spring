@@ -1,7 +1,6 @@
 package bricksky.hello_spring.service;
 
 import bricksky.hello_spring.domain.Member;
-import bricksky.hello_spring.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
