@@ -1,6 +1,6 @@
 package bricksky.hello_spring.controller;
 
-public class MmeberForm {
+public class MemberForm {
     private String name;
 
     public String getName() {
