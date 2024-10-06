@@ -1,5 +1,6 @@
 package bricksky.hello_spring.service;
 
+import bricksky.hello_spring.aop.TimeTraceAop;
 import bricksky.hello_spring.repository.JdbcMemberRepository;
 import bricksky.hello_spring.repository.JpaMemberRepository;
 import bricksky.hello_spring.repository.MemberRepository;
@@ -24,6 +25,11 @@ public class SpringConfig {
     public MemberService memberService(){
         return new MemberService(memberRepository);
     }
+
+//    @Bean
+//    public TimeTraceAop timeTraceAop(){
+//        return timeTraceAop();
+//    }
 
 //    @Bean
 //    public MemberRepository memberRepository(){
