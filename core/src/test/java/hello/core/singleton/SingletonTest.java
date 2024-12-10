@@ -2,16 +2,11 @@ package hello.core.singleton;
 
 import hello.core.AppConfig;
 import hello.core.member.MemberService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
-import org.springframework.context.annotation.Configuration;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-public class singletonTest {
+public class SingletonTest {
 
     @Test
     @DisplayName("스프링 없는 순수란 DI 컨테이너")
