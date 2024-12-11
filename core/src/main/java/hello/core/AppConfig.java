@@ -34,4 +34,9 @@ public class AppConfig {
         // return new FixDiscountPolicy();
         return new RateDiscountPolicy();
     }
+
+//    @Bean
+//    public MemoryMemberRepository memoryMemberRepository(){
+//        return new MemoryMemberRepository();
+//    }
 }
