@@ -2,6 +2,7 @@ package hello.core.singleton;
 
 import hello.core.AppConfig;
 import hello.core.member.MemberRepository;
+import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import hello.core.order.OrderServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -15,21 +16,20 @@ public class ConfigurationSingletonTest {
     void configurationTest() {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        MemberServiceImpl memberService = ac.getBean(MemberServiceImpl.class);
+        MemberServiceImpl memberService = ac.getBean("memberService", MemberServiceImpl.class);
         OrderServiceImpl orderService = ac.getBean("orderService", OrderServiceImpl.class);
-//        MemberRepository memberRepository = ac.getBean("memberRepository", MemberRepository.class);
-        MemberRepository getMemberRepository = ac.getBean("getMemberRepository", MemberRepository.class);
+        MemberRepository memberRepository = ac.getBean("memberRepository", MemberRepository.class);
 
 
-        MemberRepository memberRepository1 = memberService.getMemberRepository();
-        MemberRepository memberRepository2 = memberService.getMemberRepository();
+//        MemberRepository memberRepository1 = memberService.memberRepository();
+//        MemberRepository memberRepository2 = memberService.memberRepository();
 
-        System.out.println("memberService -> memberRepository1: " + memberRepository1);
-        System.out.println("orderService -> memberRepository2: " + memberRepository2);
-        System.out.println("memberRepository: " + getMemberRepository);
+        System.out.println("memberService -> memberRepository: " + memberService.getMemberRepository());
+        System.out.println("orderService -> memberRepository: " + memberService.getMemberRepository());
+        System.out.println("memberRepository: " + memberRepository);
 
-        assertThat(memberService.getMemberRepository()).isSameAs(getMemberRepository);
-        assertThat(memberService.getMemberRepository()).isSameAs(getMemberRepository);
+        assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
+        assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
     }
 
     @Test
