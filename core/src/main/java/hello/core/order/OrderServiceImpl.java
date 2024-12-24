@@ -5,32 +5,22 @@ import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+//@RequiredArgsConstructor
 
 public class OrderServiceImpl implements OrderService {
 
-    private  MemberRepository memberRepository;
-    private  DiscountPolicy discountPolicy;
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
 
     @Autowired
-    public void setMemberRepository(MemberRepository memberRepository) {
-        System.out.println("memberRepository = " + memberRepository);
-    this.memberRepository = memberRepository;
-}
+    private DiscountPolicy rateDiscountPolicy;
 
-    @Autowired
-    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
-        System.out.println("discountPolicy = " + discountPolicy);
-    this.discountPolicy = discountPolicy;
-}
-    public MemberRepository getMemberRepository() {
-        return memberRepository;
-    }
-
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        System.out.println("1. OrderServiceImpl.OrderServiceImpl");
+    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+        // System.out.println("1. OrderServiceImpl.OrderServiceImpl");
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
@@ -41,5 +31,20 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice);
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+
+    @Autowired
+    public void setMemberRepository(MemberRepository memberRepository) {
+        // System.out.println("memberRepository = " + memberRepository);
+    this.memberRepository = memberRepository;
+}
+
+    @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        // System.out.println("discountPolicy = " + discountPolicy);
+    this.discountPolicy = discountPolicy;
+}
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
